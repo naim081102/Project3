@@ -11,6 +11,7 @@ import sys
 import os
 
 
+# --------------------- Start Michel -----------------------
 # load batch data
 def load_batch(fpath, label_key='labels'):
     """Internal utility for parsing CIFAR data.
@@ -90,7 +91,13 @@ print(x_test.shape[0], 'test samples')
 # Convert class vectors to binary class matrices.
 y_train = keras.utils.to_categorical(y_train, num_classes)
 y_test = keras.utils.to_categorical(y_test, num_classes)
+# --------------------- End Michel -----------------------
 
+# --------------------- Start Faris -----------------------
+# 3b
+# --------------------- End Faris -----------------------
+
+#------------------- Start Naim -------------------------
 # model architecture
 model = Sequential()
 model.add(Input(shape=(32,32,3), name="Input"))
@@ -117,8 +124,6 @@ x_test /= 255
 log_dir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
 
-
-
 # Fit to model
 model.fit(x_train, y_train,
               batch_size=batch_size,
@@ -133,4 +138,4 @@ if not os.path.isdir(save_dir):
 model_path = os.path.join(save_dir, model_name)
 model.save(model_path)
 print('Saved trained model at %s ' % model_path)
-
+#------------------- End Naim -------------------------
